@@ -1,0 +1,1 @@
+using type moduoles in package.json -> enables use of ES modules (import/export syntax) in Node.js
