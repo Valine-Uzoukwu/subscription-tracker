@@ -1,8 +1,9 @@
 import express from "express";
-import { PORT } from "./config/env.ts"; // imports the PORT variable from the env.ts file
-import  userRouter  from "./routes/user.routes.ts"; // imports the userRouter from the user.routes.ts file
-import  subscriptionRouter  from "./routes/subscription.routes.ts";
-import  authRouter  from "./routes/auth.routes.ts";
+import { NODE_ENV, PORT } from "./config/env.ts"; // imports the PORT variable from the env.ts file
+import userRouter from "./routes/user.routes.ts"; // imports the userRouter from the user.routes.ts file
+import subscriptionRouter from "./routes/subscription.routes.ts";
+import authRouter from "./routes/auth.routes.ts";
+import connectDB from "./database/mongodb.ts"; // imports the connectDB function from the db.ts file
 
 const app = express();
 
@@ -16,10 +17,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Subscription Tracker API!");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(
     `Subscription Tracker API is running on http://localhost:${PORT}`,
   );
+  await connectDB(); // calls the connectDB function to connect to the database when the server starts
 });
 
 export default app;

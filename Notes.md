@@ -18,4 +18,8 @@ routes:
 - /endpoint/:var -> var is a dynamic parameter that can have it's value dchanged
 - you can have multiple routes with same enpoint but they have to use differnt verbs
     - ex: router.get(/) and router.post (/) are valid 
-    
+
+/modles:
+folder for file containing schemas for how data should look   
+schemas:
+- contain objects that define how modles should look
