@@ -1,6 +1,6 @@
 const errorMiddleware = (err: any, req: any, res: any, next: any) => {
   try {
-    let error = { ...err };
+    let error = err;
     error.Message = err.message || "Internal Server Error";
     console.error(err);
 
@@ -18,10 +18,10 @@ const errorMiddleware = (err: any, req: any, res: any, next: any) => {
       error.statusCode = 400;
     }
 
-    //Mongoos Validation Error
+    //Mongoose Validation Error
     if (err.name === "ValidationError") {
       const message = Object.values(err.errors).map((val: any) => val.message);
-      error = new Error(message.join(", "));
+      error = new Error(message.join(","));
       error.statusCode = 400;
     }
 
